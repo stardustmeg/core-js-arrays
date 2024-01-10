@@ -513,8 +513,18 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let result = 1;
+
+  nums.reduce((accumulator, currentValue, currentIndex, array) => {
+    const length = currentValue > array[currentIndex - 1] ? accumulator + 1 : 1;
+
+    result = Math.max(result, length);
+
+    return length;
+  }, 1);
+
+  return result;
 }
 
 /**
@@ -610,8 +620,7 @@ function swapHeadAndTail(arr) {
   const head = arr.slice(0, middle);
   const tail = arr.slice(-middle);
 
-  const result = tail.concat(arr.slice(middle, -middle), head);
-  return result;
+  return tail.concat(arr.slice(middle, -middle), head);
 }
 
 module.exports = {
